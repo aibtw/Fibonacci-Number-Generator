@@ -15,10 +15,9 @@ module dataPath(
 	localparam [15:0] mux0_in1=1;  
 	localparam [15:0] mux1_in1=0;
 	
-	assign nth_fib = current_val;
-	
 	register_16bit input_reg(clk, reset, enb, numberIn, count_to);
-	
+	register_16bit output_reg(clk, reset, count_enb, current_val, nth_fib);
+
 	counter_5bit counter(clk, reset, count_enb, count);
 	
 	register_16bit current_reg(clk, reset, count_enb, mux0_out, current_val);  
@@ -28,7 +27,5 @@ module dataPath(
 	MUX2_16bit mux1(current_val, mux1_in1, first_time, mux1_out);
 	
 	adder_16bit adder(current_val, prev_val, sum);
-
-	
 
 endmodule
