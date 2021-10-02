@@ -1,15 +1,16 @@
-module register_16bit(clk, reset, d, q);
+module register_16bit(clk, reset, load, d, q);
 
-	input clk, reset;
+	input clk, reset, load;
 	input  [15:0] d;
 	output reg [15:0] q;
-
-	always @(posedge clk) begin
-		q <= d;
-	end
 	
-	always @(negedge reset) begin
-		q <= 0;
+	
+	always @(posedge clk or negedge reset) begin
+		if(~reset)
+			q <= 0;
+		else
+			if(load)
+				q <= d;
 	end
 
 endmodule
