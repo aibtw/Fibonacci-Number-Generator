@@ -28,6 +28,7 @@ module dataPath(
 	register_16bit prev_reg(clk, usr_reset&cu_reset, 1'b1, mux1_out, prev_val);
 	
 	// Multiplexers
+	// Mux 0 doesn't appear in Technology view map. Investigate why.
 	MUX2_16bit mux0(sum, mux0_in1, first_time, mux0_out); 
 	MUX2_16bit mux1(current_val, mux1_in1, first_time, mux1_out);
 	
